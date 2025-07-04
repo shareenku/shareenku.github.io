@@ -11,7 +11,7 @@ body {
   }
   
   header {
-    background-color: #748873;
+    background-color: #D2AB80;
     padding: 1rem;
     text-align: center;
     color: white;
@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #007bff;
+    /* background-color: #809671; */
     padding: 15px 20px;
     color: white;
     position: relative;
@@ -104,7 +104,7 @@ body {
     .navbar ul {
       flex-direction: column;
       align-items: flex-end;
-      background-color: #007bff;
+      background-color: #725C3A ;
       position: absolute;
       top: 60px;
       right: 0;
@@ -130,17 +130,6 @@ body {
       margin-bottom: 10px;
     }
   }
-  
-  /* h1 {
-    margin: 0;
-  }
-
-  .address {
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin: -10px;
-    color: white;
-  } */
   
   .product-grid {
     display: grid;
@@ -204,7 +193,7 @@ body {
     border: none;
     border-radius: 50px;
     padding: 15px 20px;
-    font-size: 16px;
+    font-size: 30px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 1000;
@@ -218,8 +207,8 @@ body {
   /* Responsif di layar kecil */
   @media (max-width: 600px) {
     .floating-button {
-      padding: 12px 16px;
-      font-size: 14px;
+      padding: 15px 20px;
+      font-size: 30px;
       bottom: 15px;
       right: 15px;
     }
