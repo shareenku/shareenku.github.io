@@ -17,6 +17,10 @@ body {
     color: white;
   }
 
+  h2 {
+    color: #725C3A;
+  }
+
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -135,7 +139,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
-    padding: 2rem;
+    padding: 0.5rem;
   }
   
   .product-card {
@@ -143,7 +147,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
