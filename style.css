@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,8 +16,122 @@ body {
     text-align: center;
     color: white;
   }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 15px 20px;
+    color: white;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  /* Hamburger Icon */
+  .menu-toggle {
+    display: none;
+    width: 30px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    z-index: 20;
+  }
+
+  .menu-toggle span {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    transition: 0.4s;
+  }
+
+  .menu-toggle span:nth-child(1) {
+    top: 0;
+  }
+
+  .menu-toggle span:nth-child(2) {
+    top: 10px;
+  }
+
+  .menu-toggle span:nth-child(3) {
+    top: 20px;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 10px;
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 10px;
+  }
+
+  /* Menu */
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 1s ease;
+  }
+
+  .navbar ul li a:hover {
+    color: #ffe600;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .navbar ul {
+      flex-direction: column;
+      align-items: flex-end;
+      background-color: #007bff;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(-10px);
+      max-height: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition: all 1s ease;
+      padding: 0 20px;
+    }
+
+    .navbar ul.show {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 300px;
+      pointer-events: auto;
+      padding: 15px 20px;
+    }
+
+    .navbar ul li {
+      margin-bottom: 10px;
+    }
+  }
   
-  h1 {
+  /* h1 {
     margin: 0;
   }
 
@@ -20,7 +140,7 @@ body {
     padding: 0.5rem;
     margin: -10px;
     color: white;
-  }
+  } */
   
   .product-grid {
     display: grid;
