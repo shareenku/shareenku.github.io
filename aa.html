@@ -1,160 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Navbar Responsif Animasi Hamburger</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tombol Belanja Responsif</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .navbar {
+      margin: 0;
+      background: #f5f5f5;
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      background-color: #007bff;
-      padding: 15px 20px;
-      color: white;
-      position: relative;
-      z-index: 10;
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
+    .button-wrapper {
+      display: inline-block;
+      transition: width 0.4s ease, padding 0.4s ease;
     }
 
-    /* Hamburger Icon */
-    .menu-toggle {
-      display: none;
-      width: 30px;
-      height: 25px;
-      position: relative;
-      cursor: pointer;
-      z-index: 20;
-    }
-
-    .menu-toggle span {
+    #dynamicButton {
       position: absolute;
-      height: 3px;
-      width: 100%;
-      background: white;
-      border-radius: 5px;
-      transition: 0.4s;
-    }
-
-    .menu-toggle span:nth-child(1) {
-      top: 0;
-    }
-
-    .menu-toggle span:nth-child(2) {
-      top: 10px;
-    }
-
-    .menu-toggle span:nth-child(3) {
-      top: 20px;
-    }
-
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg);
-      top: 10px;
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg);
-      top: 10px;
-    }
-
-    /* Menu */
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .navbar ul li a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #007bff;
       color: white;
-      text-decoration: none;
+      font-weight: bold;
       font-size: 16px;
-      transition: color 0.3s ease;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.4s ease;
     }
 
-    .navbar ul li a:hover {
-      color: #ffe600;
+    #buttonText {
+      transition: opacity 0.3s ease;
     }
 
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .navbar ul {
-        flex-direction: column;
-        align-items: flex-end;
-        background-color: #007bff;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        opacity: 0;
-        transform: translateY(-10px);
-        max-height: 0;
-        overflow: hidden;
-        pointer-events: none;
-        transition: all 0.4s ease;
-        padding: 0 20px;
-      }
-
-      .navbar ul.show {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 300px;
-        pointer-events: auto;
-        padding: 15px 20px;
-      }
-
-      .navbar ul li {
-        margin-bottom: 10px;
-      }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">MySite</div>
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <ul id="nav-menu">
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Tentang</a></li>
-      <li><a href="#">Layanan</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
-  </nav>
+  <div class="button-wrapper" id="buttonWrapper">
+    <button id="dynamicButton">
+      <span id="buttonIcon"><i class="fas fa-shopping-bag"></i></span>
+      <span id="buttonText" class="hidden">Belanja di Toko</span>
+    </button>
+  </div>
 
   <script>
-    const toggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("nav-menu");
+    const wrapper = document.getElementById('buttonWrapper');
+    const button = document.getElementById('dynamicButton');
+    const icon = document.getElementById('buttonIcon');
+    const text = document.getElementById('buttonText');
 
-    toggle.addEventListener("click", () => {
-      toggle.classList.toggle("active");
-      menu.classList.toggle("show");
-    });
+    let showingIcon = true;
+
+    function updateSizeSmooth() {
+      const clone = button.cloneNode(true);
+      if (showingIcon) {
+        clone.querySelector('#buttonIcon').classList.add('hidden');
+        clone.querySelector('#buttonText').classList.remove('hidden');
+      } else {
+        clone.querySelector('#buttonIcon').classList.remove('hidden');
+        clone.querySelector('#buttonText').classList.add('hidden');
+      }
+
+      clone.style.position = 'absolute';
+      clone.style.visibility = 'hidden';
+      document.body.appendChild(clone);
+      const newWidth = clone.offsetWidth;
+      document.body.removeChild(clone);
+
+      wrapper.style.width = `${newWidth}px`;
+    }
+
+    setInterval(() => {
+      if (showingIcon) {
+        icon.classList.add('hidden');
+        text.classList.remove('hidden');
+      } else {
+        text.classList.add('hidden');
+        icon.classList.remove('hidden');
+      }
+      showingIcon = !showingIcon;
+      updateSizeSmooth();
+    }, 3000);
+
+    window.addEventListener('load', updateSizeSmooth);
   </script>
 
 </body>

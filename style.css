@@ -37,6 +37,11 @@ body {
     font-weight: bold;
   }
 
+  .logo img {
+    width: 3rem;
+    margin-left: 0.5rem;
+  }
+
   /* Hamburger Icon */
   .menu-toggle {
     display: none;
